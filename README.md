@@ -4,7 +4,11 @@ This repository contains the code to reproduce the ClickHouse benchmark ([ClickB
 * **Caching**. Removing caches by invoking the `drop_caches` command is not supported, as it requires superuser access. We manually clear the caches with Python.
 * **Data loading**. The setup of the database should not be executed with Gramine-SGX, due to its performance overhead. We therefore split the script into loading the data in an unencrypted manner and then running the ClickBench workload on an already existing database file.
 
-We implement a single manifest file to run all the benchmarks. We assume all the scripts to be called from the parent folder.
+We implement a single manifest file to run all the benchmarks. We assume all the scripts to be called from the parent folder. We recommend the execution of the benchmarking suit in a Python virtual environment.
+```shell
+python3 -m venv path/to/venv
+source path/to/venv/bin/activate
+```
 
 ### DuckDB
 
