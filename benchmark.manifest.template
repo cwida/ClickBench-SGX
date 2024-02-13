@@ -34,6 +34,7 @@ fs.mounts = [
   { path = "/home/ubuntu/.local/lib/python3.10/site-packages", uri = "file:/home/ubuntu/.local/lib/python3.10/site-packages" },
   { path = "/tmp", uri = "file:/tmp" },
   { path = "{{ execdir }}", uri = "file:{{ execdir }}" },
+  { path = "/data/clickhouse_encrypted/", uri = "file:/data/clickhouse_encrypted/" },
 ]
 
 # Unfortunately, non-SGX Gramine cannot use special keys such as "_sgx_mrenclave", so for this
@@ -59,9 +60,11 @@ sgx.trusted_files = [
   "file:/bin/",
   "file:/usr/bin/",
   "file:/usr/local/lib/python3.10/dist-packages/",
-  "file:/home/ubuntu/.local/lib/python3.10/site-packages/",
+  #"file:/home/ubuntu/.local/lib/python3.10/site-packages/",
   "file:/usr/lib/python3/",
   "file:duckdb/benchmark_duckdb.py",
+  "file:clickhouse/benchmark_clickhouse.py",
+  "file:/usr/bin/clickhouse-client",
 ]
 sgx.allowed_files = [
   "file:duckdb/log.txt",
@@ -69,10 +72,20 @@ sgx.allowed_files = [
   "file:duckdb/queries.sql",
   "file:/tmp/testfile",
   "file:duckdb/my-db.duckdb.wal",
+  "file:clickhouse/clickhouse",
+  "file:clickhouse/status",
+  "file:clickhouse/result.csv",
+  "file:clickhouse/queries.sql",
   "file:/etc/",
   "file:/usr/share/zoneinfo/",
   "file:/usr/lib/python3.10/",
   "file:/usr/lib/python3.10/__pycache__",
   "file:/usr/lib/python3.10/collections/",
   "file:/usr/lib/python3/dist-packages/__pycache__/",
+  "file:/usr/lib/python3/dist-packages/apt/__pycache__/",
+  "file:/usr/lib/python3/dist-packages/apport/__pycache__/",
+  "file:/usr/lib/python3/dist-packages/apt/progress/__pycache__/",
+  "file:/home/ubuntu/.local/lib/python3.10/site-packages",
+  "file:/data/clickhouse-encrypted/",
+  "file:/usr/share/dpkg/cputable",
 ]

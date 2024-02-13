@@ -23,11 +23,8 @@ gramine-sgx ./benchmark duckdb/benchmark_duckdb.py
 ### ClickHouse
 Firstly, we need to set up the server using encrypted storage.
 ```shell
-$ mkdir /data/clickhouse_encrypted
+$ mkdir -p /data/clickhouse_encrypted
 $ chown clickhouse.clickhouse /data/clickhouse_encrypted
 $ cp clickhouse/encrypted_storage.xml /etc/clickhouse-server/config.d/encrypted_storage.xml
 ```
-Then, start the server.
-```shell
-sudo -u clickhouse clickhouse-server --config-file=/etc/clickhouse-server/config.xml
-```
+The server starts by running the setup script.
