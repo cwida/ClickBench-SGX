@@ -1,0 +1,27 @@
+<clickhouse>
+    <storage_configuration>
+        <disks>
+            <disk1>
+                <type>local</type>
+                <path>/home/ubuntu/clickhouse_encrypted/</path>
+            </disk1>
+            <encrypted_disk>
+                <type>encrypted</type>
+                <disk>disk1</disk>
+                <path>encrypted/</path>
+                <algorithm>AES_128_CTR</algorithm>
+                <key_hex id="0">00112233445566778899aabbccddeeff</key_hex>
+                <current_key_id>0</current_key_id>
+            </encrypted_disk>
+        </disks>
+        <policies>
+            <encrypted>
+                <volumes>
+                    <encrypted_volume>
+                        <disk>encrypted_disk</disk>
+                    </encrypted_volume>
+                </volumes>
+            </encrypted>
+        </policies>
+    </storage_configuration>
+</clickhouse>

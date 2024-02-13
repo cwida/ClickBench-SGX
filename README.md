@@ -19,3 +19,15 @@ gramine-sgx ./benchmark duckdb/benchmark_duckdb.py
 # results are in duckdb/log.txt
 ./duckdb/test.sh  # to test the correct behaviour
 ```
+
+### ClickHouse
+Firstly, we need to set up the server using encrypted storage.
+```shell
+$ mkdir /data/clickhouse_encrypted
+$ chown clickhouse.clickhouse /data/clickhouse_encrypted
+$ cp clickhouse/encrypted_storage.xml /etc/clickhouse-server/config.d/encrypted_storage.xml
+```
+Then, start the server.
+```shell
+sudo -u clickhouse clickhouse-server --config-file=/etc/clickhouse-server/config.xml
+```
