@@ -22,7 +22,7 @@ gramine-sgx ./benchmark duckdb/benchmark_duckdb.py
 ```
 
 ### ClickHouse
-Firstly, we need to set up the server using encrypted storage. This is made by overriding the default configuration, allocating a folder for the encrypted files. We assume a fresh ClickHouse installation, with default parameters and paths.
+Firstly, we need to set up the server using encrypted storage (inspired by [this blog post](https://kb.altinity.com/altinity-kb-setup-and-maintenance/disk_encryption/). This is made by overriding the default configuration, allocating a folder for the encrypted files. We assume a fresh ClickHouse installation, with default parameters and paths.
 ```shell
 $ mkdir -p /data/clickhouse_encrypted
 $ chown clickhouse.clickhouse /data/clickhouse_encrypted
