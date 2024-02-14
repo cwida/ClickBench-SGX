@@ -22,10 +22,17 @@ gramine-sgx ./benchmark duckdb/benchmark_duckdb.py
 ```
 
 ### ClickHouse
-Firstly, we need to set up the server using encrypted storage.
+Firstly, we need to set up the server using encrypted storage. This is made by overriding the default configuration, allocating a folder for the encrypted files. We assume a fresh ClickHouse installation, with default parameters and paths.
 ```shell
 $ mkdir -p /data/clickhouse_encrypted
 $ chown clickhouse.clickhouse /data/clickhouse_encrypted
 $ cp clickhouse/encrypted_storage.xml /etc/clickhouse-server/config.d/encrypted_storage.xml
 ```
-The server starts by running the setup script.
+The server starts by running the setup script, and then benchmarks can be executed.
+```shell
+./clickhouse/setup.sh  # to download and load the data (encrypted)
+make SGX=1
+gramine-sgx ./benchmark clickhouse/benchmark_clickhouse.py
+# results are in clickhouse/result.csv
+./clickhouse/test.sh  # to test the correct behaviour and stop the server
+```
