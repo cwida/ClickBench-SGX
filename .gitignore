@@ -654,7 +654,10 @@ FodyWeavers.xsd
 duckdb/my-db.duckdb
 duckdb/log.txt
 clickhouse/clickhouse
-clickhouse/results.csv
+clickhouse/result.csv
 **/hits.tsv.gz
 **/hits.tsv
 clickhouse/status
+**/hits.parquet
+clickhouse-parquet/status
+clickhouse-parquet/result.csv

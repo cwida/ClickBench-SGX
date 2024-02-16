@@ -25,12 +25,8 @@ done
 
 clickhouse-client < create.sql
 
-if test -f hits.tsv; then
+if test -f hits.parquet; then
     :
 else
-    wget --no-verbose --continue 'https://datasets.clickhouse.com/hits_compatible/hits.tsv.gz'
-    gzip -d hits.tsv.gz
+    wget --no-verbose --continue 'https://datasets.clickhouse.com/hits_compatible/hits.parquet'
 fi
-
-clickhouse-client --time --query "INSERT INTO hits FORMAT TSV" < hits.tsv
-
