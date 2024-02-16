@@ -8,10 +8,6 @@ pip install duckdb psutil
 
 # Load the data
 
-if test -f duckdb-parquet/hits.parquet; then
-    :
-else
-    wget --no-verbose --continue 'https://datasets.clickhouse.com/hits_compatible/hits.parquet' -P duckdb
-fi
+test -e duckdb-parquet/hits.parquet || wget --no-verbose --continue 'https://datasets.clickhouse.com/hits_compatible/hits.parquet' -P duckdb-parquet
 
-./duckdb/load.py
+./duckdb-parquet/load.py

@@ -46,7 +46,7 @@ sgx.debug = true
 sgx.edmm_enable = {{ 'true' if env.get('EDMM', '0') == '1' else 'false' }}
 sgx.enclave_size = "8G"
 # Do not change the number of maximum threads
-sgx.max_threads = {{ '1' if env.get('EDMM', '0') == '1' else '16' }}
+sgx.max_threads = {{ '1' if env.get('EDMM', '0') == '1' else '128' }}
 # sgx.enable_stats = true
 sgx.preheat_enclave = true
 sgx.profile.mode = "ocall_outer"
@@ -64,12 +64,13 @@ sgx.trusted_files = [
   "file:duckdb/benchmark_duckdb.py",
   "file:clickhouse/benchmark_clickhouse.py",
   "file:/usr/bin/clickhouse-client",
-{% for path in python.get_sys_path(entrypoint) %}
-  "file:{{ path }}{{ '/' if path.is_dir() else '' }}",
-{% endfor %}
+#{% for path in python.get_sys_path(entrypoint) %}
+#  "file:{{ path }}{{ '/' if path.is_dir() else '' }}",
+#{% endfor %}
   "file:/usr/local/lib/python3.10/dist-packages/",
   "file:/usr/lib/python3/dist-packages/",
   "file:/usr/lib/python3.10/",
+  "file:/usr/lib/python3/dist-packages/duckdb/",
 ]
 
 sgx.allowed_files = [
@@ -85,4 +86,7 @@ sgx.allowed_files = [
   "file:/etc/",
   "file:/usr/share/zoneinfo/",
   "file:/data/clickhouse-encrypted/",
+  "file:/usr/share/dpkg/cputable",
+  "file:/usr/lib/python3/dist-packages/__pycache__/",
+  "file:/usr/lib/python3.10/__pycache__/",
 ]

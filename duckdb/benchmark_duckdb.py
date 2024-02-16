@@ -10,7 +10,8 @@ def run_query(query, log_file):
         print(f"\nRunning query: {query.strip()}")
         log.write(query + '\n')
 
-        con = duckdb.connect(database=os.path.join(os.getcwd(), "duckdb/my-db.duckdb"), read_only=False)
+        con = duckdb.connect(database="duckdb/my-db.duckdb", read_only=False)
+        con.sql("SET threads TO 16").fetchall()
         for try_num in range(3):
             start = timeit.default_timer()
             results = con.sql(query).fetchall()

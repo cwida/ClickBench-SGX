@@ -25,12 +25,7 @@ done
 
 clickhouse-client < create.sql
 
-if test -f hits.tsv; then
-    :
-else
-    wget --no-verbose --continue 'https://datasets.clickhouse.com/hits_compatible/hits.tsv.gz'
-    gzip -d hits.tsv.gz
-fi
+test -f hits.tsv || (wget --no-verbose --continue 'https://datasets.clickhouse.com/hits_compatible/hits.tsv.gz' && gzip -d hits.tsv.gz)
 
 clickhouse-client --time --query "INSERT INTO hits FORMAT TSV" < hits.tsv
 
