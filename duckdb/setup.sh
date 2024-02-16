@@ -8,7 +8,7 @@ pip install duckdb psutil
 
 # Load the data
 
-if test duckdb/hits.csv; then
+if test -f duckdb/hits.csv; then
     :
 else
     wget --no-verbose --continue 'https://datasets.clickhouse.com/hits_compatible/hits.csv.gz' -P duckdb

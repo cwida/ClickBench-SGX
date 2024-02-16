@@ -14,8 +14,6 @@ loader.insecure__use_cmdline_argv = true
 #loader.insecure__use_host_env = true
 loader.env.LD_LIBRARY_PATH = "/lib:{{ arch_libdir }}:/usr/{{ arch_libdir }}"
 loader.env.PATH = "{{ execdir }}"
-loader.env.PYTHONHOME = "/usr/local/lib/python3.10"
-loader.env.PYTHONPATH = "/usr/lib/python3.10:/usr/lib/python3.10/lib-dynload:/usr/local/lib/python3.10/dist-packages:/usr/lib/python3/dist-packages:/home/ubuntu/.local/lib/python3.10/site-packages"
 
 # Set HOME to suppress "warning: cannot find home directory"
 loader.env.HOME = "/"
@@ -27,14 +25,16 @@ fs.mounts = [
   { path = "/usr/bin", uri = "file:/usr/bin" },
   { path = "/etc", uri = "file:/etc" },
   { path = "{{ entrypoint }}", uri = "file:{{ entrypoint }}" },
-  { path = "/usr/local/lib/python3.10/dist-packages", uri = "file:/usr/local/lib/python3.10/dist-packages" },
   { path = "/usr/share/zoneinfo", uri = "file:/usr/share/zoneinfo" },
-  { path = "/usr/lib/python3.10", uri = "file:/usr/lib/python3.10" },
-  { path = "/usr/lib/python3/dist-packages", uri = "file:/usr/lib/python3/dist-packages" },
-  { path = "/home/ubuntu/.local/lib/python3.10/site-packages", uri = "file:/home/ubuntu/.local/lib/python3.10/site-packages" },
+  { path = "/usr/{{ arch_libdir }}", uri = "file:/usr/{{ arch_libdir }}" },
   { path = "/tmp", uri = "file:/tmp" },
+  { path = "/usr/local/lib/python3.10/dist-packages", uri = "file:/usr/local/lib/python3.10/dist-packages" },
+  { path = "/usr/lib/python3/dist-packages", uri = "file:/usr/lib/python3/dist-packages" },
+  { path = "/usr/lib/python3.10", uri = "file:/usr/lib/python3.10" },
+{% for path in python.get_sys_path(entrypoint) %}
+  { path = "{{ path }}", uri = "file:{{ path }}" },
+{% endfor %}
   { path = "{{ execdir }}", uri = "file:{{ execdir }}" },
-  { path = "/data/clickhouse_encrypted/", uri = "file:/data/clickhouse_encrypted/" },
 ]
 
 # Unfortunately, non-SGX Gramine cannot use special keys such as "_sgx_mrenclave", so for this
@@ -59,13 +59,19 @@ sgx.trusted_files = [
   "file:{{ entrypoint }}",
   "file:/bin/",
   "file:/usr/bin/",
-  "file:/usr/local/lib/python3.10/dist-packages/",
-  #"file:/home/ubuntu/.local/lib/python3.10/site-packages/",
-  "file:/usr/lib/python3/",
+  "file:/usr/{{ arch_libdir }}/",
+  "file:/usr/lib/",
   "file:duckdb/benchmark_duckdb.py",
   "file:clickhouse/benchmark_clickhouse.py",
   "file:/usr/bin/clickhouse-client",
+{% for path in python.get_sys_path(entrypoint) %}
+  "file:{{ path }}{{ '/' if path.is_dir() else '' }}",
+{% endfor %}
+  "file:/usr/local/lib/python3.10/dist-packages/",
+  "file:/usr/lib/python3/dist-packages/",
+  "file:/usr/lib/python3.10/",
 ]
+
 sgx.allowed_files = [
   "file:duckdb/log.txt",
   "file:duckdb/my-db.duckdb",
@@ -78,14 +84,5 @@ sgx.allowed_files = [
   "file:clickhouse/queries.sql",
   "file:/etc/",
   "file:/usr/share/zoneinfo/",
-  "file:/usr/lib/python3.10/",
-  "file:/usr/lib/python3.10/__pycache__",
-  "file:/usr/lib/python3.10/collections/",
-  "file:/usr/lib/python3/dist-packages/__pycache__/",
-  "file:/usr/lib/python3/dist-packages/apt/__pycache__/",
-  "file:/usr/lib/python3/dist-packages/apport/__pycache__/",
-  "file:/usr/lib/python3/dist-packages/apt/progress/__pycache__/",
-  "file:/home/ubuntu/.local/lib/python3.10/site-packages",
   "file:/data/clickhouse-encrypted/",
-  "file:/usr/share/dpkg/cputable",
 ]

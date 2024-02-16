@@ -9,7 +9,7 @@ This repository contains the code to reproduce the ClickHouse benchmark ([ClickB
 * Intel Xeon Platinum CPU (or any CPU supporting Secure Guard Extensions)
 * The [linux-sgx](https://github.com/intel/linux-sgx) drivers installed
 * Gramine with a private key to sign enclaves (see `gramine-sgx-gen-private-key`)
-* The relevant Python3 packages to connect to different databases (`duckdb`, `clickhouse_connect`)
+* The relevant Python3 packages to connect to different databases (`duckdb`, `clickhouse_connect`) installed in `/usr/lib/python3/dist-packages`
 
 ### DuckDB
 
