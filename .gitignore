@@ -657,3 +657,4 @@ clickhouse/clickhouse
 **/hits.tsv
 clickhouse/status
 **/hits.parquet
+duckdb-parquet/my-db.duckdb
