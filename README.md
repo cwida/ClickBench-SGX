@@ -21,8 +21,17 @@ gramine-sgx ./benchmark duckdb/benchmark_duckdb.py
 ./duckdb/test.sh  # to test the correct behaviour
 ```
 
-### ClickHouse
-Firstly, we need to set up the server using encrypted storage (inspired by [this blog post](https://kb.altinity.com/altinity-kb-setup-and-maintenance/disk_encryption/)). This is made by overriding the default configuration, allocating a folder for the encrypted files. We assume a fresh ClickHouse installation, with default parameters and paths. In order to create the user `clickhouse`, clickhouse should be already installed. We, therefore, advise to run the benchmark in an unencrypted way first, or install ClickHouse before running the benchmarks.
+### ClickHouse (encrypted)
+Firstly, we need to set up the server using encrypted storage (inspired by [this blog post](https://kb.altinity.com/altinity-kb-setup-and-maintenance/disk_encryption/)). This is made by overriding the default configuration, allocating a folder for the encrypted files. We assume a fresh ClickHouse installation, with default parameters and paths. In order to create the user `clickhouse`, ClickHouse should be already installed. We, therefore, advise to run the benchmark in an unencrypted way first, or install ClickHouse before running the benchmarks:
+```shell
+sudo clickhouse
+curl https://clickhouse.com/ | sh
+sudo ./clickhouse install --noninteractive
+sudo clickhouse start
+sudo clickhouse stop
+cd ..
+```
+Now, the encrypted disk can be created.
 ```shell
 $ mkdir -p /data/clickhouse_encrypted
 $ chown clickhouse.clickhouse /data/clickhouse_encrypted
