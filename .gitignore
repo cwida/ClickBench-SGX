@@ -659,3 +659,6 @@ clickhouse/status
 **/hits.parquet
 duckdb-parquet/my-db.duckdb
 duckdb-parquet/hits_encrypted.parquet
+duckdb-parquet-partitioned/my-db.duckdb
+duckdb-parquet-partitioned/hits_encrypted.parquet/*
+
