@@ -9,8 +9,8 @@ This repository contains the code to reproduce the ClickHouse benchmark ([ClickB
 * Ubuntu 22.04 or 22.10
 * Intel Xeon Platinum CPU (or any CPU supporting Secure Guard Extensions)
 * The [linux-sgx](https://github.com/intel/linux-sgx) drivers installed
-* Gramine with a private key to sign enclaves (see `gramine-sgx-gen-private-key`)
-* The relevant Python3 packages to connect to different databases (`duckdb`, `clickhouse_connect`) installed in `/usr/lib/python3/dist-packages`
+* [Gramine](https://gramine.readthedocs.io/en/latest/installation.html) with a private key to sign enclaves (see `gramine-sgx-gen-private-key`)
+* The relevant Python3 packages to connect to different databases (`duckdb`, `clickhouse_connect`) installed in `/usr/lib/python3/dist-packages/`
 
 ### DuckDB (unencrypted)
 This benchmark exactly replicates ClickBench.
@@ -23,7 +23,7 @@ gramine-sgx ./benchmark duckdb/benchmark_duckdb.py
 ```
 
 ### DuckDB (Parquet, encrypted)
-This benchmark, rather than creating a view from a Parquet file and querying it, firstly creates the table, then dumps it into an encrypted Parquet files. The queries are then executed using the `read_parquet` functioning and the necessary encrypted key.
+This benchmark, rather than creating a view from a Parquet file and querying it, firstly creates the table, then dumps it into an encrypted Parquet file. The queries are then executed using the `read_parquet` function and the necessary encrypted key.
 ```shell
 ./duckdb-parquet/setup.sh  # to download and load the data (encrypted)
 make SGX=1
