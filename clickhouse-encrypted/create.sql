@@ -1,4 +1,4 @@
-CREATE TABLE hits
+CREATE TABLE hits_encrypted
 (
     WatchID BIGINT NOT NULL,
     JavaEnable SMALLINT NOT NULL,
@@ -107,4 +107,5 @@ CREATE TABLE hits
     CLID INTEGER NOT NULL,
     PRIMARY KEY (CounterID, EventDate, UserID, EventTime, WatchID)
 )
-ENGINE = MergeTree;
+ENGINE = MergeTree
+SETTINGS storage_policy = 'encrypted';

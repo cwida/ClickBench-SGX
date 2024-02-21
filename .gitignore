@@ -653,9 +653,11 @@ FodyWeavers.xsd
 **/hits.csv.gz
 duckdb/my-db.duckdb
 clickhouse/clickhouse
+clickhouse-encrypted/clickhouse
 **/hits.tsv.gz
 **/hits.tsv
 clickhouse/status
+clickhouse-encrypted/status
 **/hits.parquet
 duckdb-parquet/my-db.duckdb
 duckdb-parquet/hits_encrypted.parquet
