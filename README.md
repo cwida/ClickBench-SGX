@@ -1,3 +1,4 @@
+## CWI ClickBench-SGX
 This repository contains the code to reproduce the ClickHouse benchmark ([ClickBench](https://github.com/ClickHouse/ClickBench)) on Intel SGX 2 using Gramine. We are currently porting only a limited subset of systems. Our scripts reproduce ClickBench with the following modifications:
 
 * **Structural changes**. The benchmark runners are now written in Python, as shell scripts are not entirely compatible with Gramine. This is because Gramine does not support forking processes in the same enclave.
