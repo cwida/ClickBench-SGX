@@ -1,4 +1,344 @@
-SELECT * FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE URL LIKE '%google%' ORDER BY EventTime LIMIT 10;
-7.7953016280002885
-7.783711263999976
-8.005422423000255
+Starting benchmark...
+
+Running query: SELECT * FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE URL LIKE '%google%' ORDER BY EventTime LIMIT 10;
+┌─────────────────────────────────────┐
+│┌───────────────────────────────────┐│
+││    Query Profiling Information    ││
+│└───────────────────────────────────┘│
+└─────────────────────────────────────┘
+
+┌─────────────────────────────────────┐
+│┌───────────────────────────────────┐│
+││         Total Time: 58.58s        ││
+│└───────────────────────────────────┘│
+└─────────────────────────────────────┘
+┌───────────────────────────┐
+│      RESULT_COLLECTOR     │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│             0             │
+│          (0.00s)          │
+└─────────────┬─────────────┘                             
+┌─────────────┴─────────────┐
+│      EXPLAIN_ANALYZE      │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│             1             │
+│          (0.00s)          │
+└─────────────┬─────────────┘                             
+┌─────────────┴─────────────┐
+│           TOP_N           │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│           Top 10          │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│ read_parquet.EventTime ASC│
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│             10            │
+│          (0.39s)          │
+└─────────────┬─────────────┘                             
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│          WatchID          │
+│         JavaEnable        │
+│           Title           │
+│         GoodEvent         │
+│         EventTime         │
+│         EventDate         │
+│         CounterID         │
+│          ClientIP         │
+│          RegionID         │
+│           UserID          │
+│        CounterClass       │
+│             OS            │
+│         UserAgent         │
+│            URL            │
+│          Referer          │
+│         IsRefresh         │
+│     RefererCategoryID     │
+│      RefererRegionID      │
+│       URLCategoryID       │
+│        URLRegionID        │
+│      ResolutionWidth      │
+│      ResolutionHeight     │
+│      ResolutionDepth      │
+│         FlashMajor        │
+│         FlashMinor        │
+│        FlashMinor2        │
+│          NetMajor         │
+│          NetMinor         │
+│       UserAgentMajor      │
+└─────────────┬─────────────┘                             
+┌─────────────┴─────────────┐
+│           FILTER          │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│  contains(URL, 'google')  │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│        EC: 19999499       │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│           15911           │
+│          (54.49s)         │
+└─────────────┬─────────────┘                             
+┌─────────────┴─────────────┐
+│       READ_PARQUET        │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│            URL            │
+│          WatchID          │
+│         JavaEnable        │
+│           Title           │
+│         GoodEvent         │
+│         EventTime         │
+│         EventDate         │
+│         CounterID         │
+│          ClientIP         │
+│          RegionID         │
+│           UserID          │
+│        CounterClass       │
+│             OS            │
+│         UserAgent         │
+│          Referer          │
+│         IsRefresh         │
+│     RefererCategoryID     │
+│      RefererRegionID      │
+│       URLCategoryID       │
+│        URLRegionID        │
+│      ResolutionWidth      │
+│      ResolutionHeight     │
+│      ResolutionDepth      │
+│         FlashMajor        │
+│         FlashMinor        │
+│        FlashMinor2        │
+│          NetMajor         │
+│          NetMinor         │
+│       UserAgentMajor      │
+└───────────────────────────┘                             
+
+
+
+Query finished in 59.079620 seconds
+┌─────────────────────────────────────┐
+│┌───────────────────────────────────┐│
+││    Query Profiling Information    ││
+│└───────────────────────────────────┘│
+└─────────────────────────────────────┘
+
+┌─────────────────────────────────────┐
+│┌───────────────────────────────────┐│
+││        Total Time: 153.16s        ││
+│└───────────────────────────────────┘│
+└─────────────────────────────────────┘
+┌───────────────────────────┐
+│      RESULT_COLLECTOR     │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│             0             │
+│          (0.00s)          │
+└─────────────┬─────────────┘                             
+┌─────────────┴─────────────┐
+│      EXPLAIN_ANALYZE      │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│             1             │
+│          (0.00s)          │
+└─────────────┬─────────────┘                             
+┌─────────────┴─────────────┐
+│           TOP_N           │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│           Top 10          │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│ read_parquet.EventTime ASC│
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│             10            │
+│          (0.65s)          │
+└─────────────┬─────────────┘                             
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│          WatchID          │
+│         JavaEnable        │
+│           Title           │
+│         GoodEvent         │
+│         EventTime         │
+│         EventDate         │
+│         CounterID         │
+│          ClientIP         │
+│          RegionID         │
+│           UserID          │
+│        CounterClass       │
+│             OS            │
+│         UserAgent         │
+│            URL            │
+│          Referer          │
+│         IsRefresh         │
+│     RefererCategoryID     │
+│      RefererRegionID      │
+│       URLCategoryID       │
+│        URLRegionID        │
+│      ResolutionWidth      │
+│      ResolutionHeight     │
+│      ResolutionDepth      │
+│         FlashMajor        │
+│         FlashMinor        │
+│        FlashMinor2        │
+│          NetMajor         │
+│          NetMinor         │
+│       UserAgentMajor      │
+└─────────────┬─────────────┘                             
+┌─────────────┴─────────────┐
+│           FILTER          │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│  contains(URL, 'google')  │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│        EC: 19999499       │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│           15911           │
+│          (91.08s)         │
+└─────────────┬─────────────┘                             
+┌─────────────┴─────────────┐
+│       READ_PARQUET        │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│            URL            │
+│          WatchID          │
+│         JavaEnable        │
+│           Title           │
+│         GoodEvent         │
+│         EventTime         │
+│         EventDate         │
+│         CounterID         │
+│          ClientIP         │
+│          RegionID         │
+│           UserID          │
+│        CounterClass       │
+│             OS            │
+│         UserAgent         │
+│          Referer          │
+│         IsRefresh         │
+│     RefererCategoryID     │
+│      RefererRegionID      │
+│       URLCategoryID       │
+│        URLRegionID        │
+│      ResolutionWidth      │
+│      ResolutionHeight     │
+│      ResolutionDepth      │
+│         FlashMajor        │
+│         FlashMinor        │
+│        FlashMinor2        │
+│          NetMajor         │
+│          NetMinor         │
+│       UserAgentMajor      │
+└───────────────────────────┘                             
+
+
+
+Query finished in 156.040505 seconds
+┌─────────────────────────────────────┐
+│┌───────────────────────────────────┐│
+││    Query Profiling Information    ││
+│└───────────────────────────────────┘│
+└─────────────────────────────────────┘
+
+┌─────────────────────────────────────┐
+│┌───────────────────────────────────┐│
+││        Total Time: 154.76s        ││
+│└───────────────────────────────────┘│
+└─────────────────────────────────────┘
+┌───────────────────────────┐
+│      RESULT_COLLECTOR     │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│             0             │
+│          (0.00s)          │
+└─────────────┬─────────────┘                             
+┌─────────────┴─────────────┐
+│      EXPLAIN_ANALYZE      │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│             1             │
+│          (0.00s)          │
+└─────────────┬─────────────┘                             
+┌─────────────┴─────────────┐
+│           TOP_N           │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│           Top 10          │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│ read_parquet.EventTime ASC│
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│             10            │
+│          (0.56s)          │
+└─────────────┬─────────────┘                             
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│          WatchID          │
+│         JavaEnable        │
+│           Title           │
+│         GoodEvent         │
+│         EventTime         │
+│         EventDate         │
+│         CounterID         │
+│          ClientIP         │
+│          RegionID         │
+│           UserID          │
+│        CounterClass       │
+│             OS            │
+│         UserAgent         │
+│            URL            │
+│          Referer          │
+│         IsRefresh         │
+│     RefererCategoryID     │
+│      RefererRegionID      │
+│       URLCategoryID       │
+│        URLRegionID        │
+│      ResolutionWidth      │
+│      ResolutionHeight     │
+│      ResolutionDepth      │
+│         FlashMajor        │
+│         FlashMinor        │
+│        FlashMinor2        │
+│          NetMajor         │
+│          NetMinor         │
+│       UserAgentMajor      │
+└─────────────┬─────────────┘                             
+┌─────────────┴─────────────┐
+│           FILTER          │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│  contains(URL, 'google')  │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│        EC: 19999499       │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│           15911           │
+│          (93.48s)         │
+└─────────────┬─────────────┘                             
+┌─────────────┴─────────────┐
+│       READ_PARQUET        │
+│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│            URL            │
+│          WatchID          │
+│         JavaEnable        │
+│           Title           │
+│         GoodEvent         │
+│         EventTime         │
+│         EventDate         │
+│         CounterID         │
+│          ClientIP         │
+│          RegionID         │
+│           UserID          │
+│        CounterClass       │
+│             OS            │
+│         UserAgent         │
+│          Referer          │
+│         IsRefresh         │
+│     RefererCategoryID     │
+│      RefererRegionID      │
+│       URLCategoryID       │
+│        URLRegionID        │
+│      ResolutionWidth      │
+│      ResolutionHeight     │
+│      ResolutionDepth      │
+│         FlashMajor        │
+│         FlashMinor        │
+│        FlashMinor2        │
+│          NetMajor         │
+│          NetMinor         │
+│       UserAgentMajor      │
+└───────────────────────────┘                             
+
+
+
+Query finished in 155.573000 seconds
+
+Benchmark finished. Check duckdb/explain.txt for the query timings.
