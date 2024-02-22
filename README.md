@@ -10,7 +10,7 @@ This repository contains the code to reproduce the ClickHouse benchmark ([ClickB
 * Intel Xeon Platinum CPU (or any CPU supporting Secure Guard Extensions)
 * The [linux-sgx](https://github.com/intel/linux-sgx) drivers installed
 * [Gramine](https://gramine.readthedocs.io/en/latest/installation.html) with a private key to sign enclaves (see `gramine-sgx-gen-private-key`)
-* The relevant Python3 packages to connect to different databases (`duckdb`, `clickhouse_connect`) installed in `/usr/lib/python3/dist-packages/`
+* The relevant Python3 packages to connect to different databases (`duckdb`, `clickhouse_connect`) installed in `/usr/lib/python3/dist-packages/`.
 
 ### DuckDB (unencrypted)
 This benchmark exactly replicates ClickBench.
@@ -22,14 +22,17 @@ gramine-sgx ./benchmark duckdb/benchmark_duckdb.py
 ./duckdb/test.sh  # to test the correct behaviour
 ```
 
+### DuckDB (Parquet, unencrypted)
+This benchmark is also the same as the ClickBench DuckDB Parquet implementation. To reproduce, follow the same steps as the DuckDB unencrypted benchmark, changing the path from `duckdb` to `duckdb-parquet`.
+
 ### DuckDB (Parquet, encrypted)
 This benchmark, rather than creating a view from a Parquet file and querying it, firstly creates the table, then dumps it into an encrypted Parquet file. The queries are then executed using the `read_parquet` function and the necessary encrypted key.
 ```shell
-./duckdb-parquet/setup.sh  # to download and load the data (encrypted)
+./duckdb-parquet-encrypted/setup.sh  # to download and load the data (encrypted)
 make SGX=1
-gramine-sgx ./benchmark duckdb-parquet/benchmark_duckdb.py
-# results are in duckdb/log.txt
-./duckdb-parquet/test.sh  # to test the correct behaviour
+gramine-sgx ./benchmark duckdb-parquet-encrypted/benchmark_duckdb.py
+# results are in duckdb-parquet-encrypted/log.txt
+./duckdb-parquet-encrypted/test.sh  # to test the correct behaviour
 ```
 
 ### ClickHouse (unencrypted)
@@ -71,6 +74,19 @@ gramine-sgx ./benchmark clickhouse-encrypted/benchmark_clickhouse.py
 All benchmarks can be run with native Python, rather than Gramine, to provide a baseline evaluation. In order to do so, instead of the `gramine-sgx` command, this can be executed:
 ```shell
 python3 benchmark_folder/benchmark_name.py
+```
+
+### Profiling DuckDB
+The benchmarking suite comes with a script to profile DuckDB. The script is contained in the `duckdb` folder, but can be used with any database and any query assuming that the database `duckdb/my-db.duckdb` exists. The folder `duckdb` contains the following files:
+* `explain_query.sql` containing the query (or queries) to profile, **to edit accordingly**.
+* `profile_duckdb.py` containing the Python script to execute the queries. Each query is executed 3 times, similarly to ClickBench.
+In order to profile queries, run the following (assuming data and database file already present):
+```shell
+make SGX=1
+# inside SGX
+gramine-sgx ./benchmark duckdb/profile_duckdb.py 2> /dev/null | tee duckdb/explain.txt
+# outside SGX
+python3 duckdb/profile_duckdb.py | tee duckdb/explain.txt
 ```
 
 ### Formatting results
