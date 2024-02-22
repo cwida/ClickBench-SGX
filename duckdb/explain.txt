@@ -1,0 +1,4 @@
+SELECT * FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE URL LIKE '%google%' ORDER BY EventTime LIMIT 10;
+7.7953016280002885
+7.783711263999976
+8.005422423000255

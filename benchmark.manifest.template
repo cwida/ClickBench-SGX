@@ -68,6 +68,7 @@ sgx.trusted_files = [
   "file:duckdb-parquet-partitioned/benchmark_duckdb.py",
   "file:clickhouse/benchmark_clickhouse.py",
   "file:clickhouse-encrypted/benchmark_clickhouse.py",
+  "file:duckdb/profile_duckdb.py",
   "file:/usr/bin/clickhouse-client",
 #{% for path in python.get_sys_path(entrypoint) %}
 #  "file:{{ path }}{{ '/' if path.is_dir() else '' }}",
@@ -89,6 +90,8 @@ sgx.allowed_files = [
   "file:duckdb-parquet-partitioned/log.txt",
   "file:duckdb-parquet-partitioned/queries.sql",
   "file:duckdb/my-db.duckdb.wal",
+  "file:duckdb/explain.txt",
+  "file:duckdb/explain_query.sql",
   "file:duckdb-parquet/my-db.duckdb",
   "file:duckdb-parquet-partitioned/hits_encrypted.parquet/",
   "file:duckdb-parquet/hits.parquet",
