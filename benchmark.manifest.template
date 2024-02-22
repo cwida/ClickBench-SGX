@@ -47,7 +47,7 @@ sgx.debug = true
 sgx.edmm_enable = {{ 'true' if env.get('EDMM', '0') == '1' else 'false' }}
 sgx.enclave_size = "64G"
 # Do not change the number of maximum threads
-sgx.max_threads = {{ '1' if env.get('EDMM', '0') == '1' else '256' }}
+sgx.max_threads = {{ '1' if env.get('EDMM', '0') == '1' else '132' }}
 # sgx.enable_stats = true
 sgx.preheat_enclave = true
 sgx.profile.mode = "ocall_outer"
@@ -64,6 +64,7 @@ sgx.trusted_files = [
   "file:/usr/lib/",
   "file:duckdb/benchmark_duckdb.py",
   "file:duckdb-parquet/benchmark_duckdb.py",
+  "file:duckdb-parquet-encrypted/benchmark_duckdb.py",
   "file:duckdb-parquet-partitioned/benchmark_duckdb.py",
   "file:clickhouse/benchmark_clickhouse.py",
   "file:clickhouse-encrypted/benchmark_clickhouse.py",
@@ -90,9 +91,14 @@ sgx.allowed_files = [
   "file:duckdb/my-db.duckdb.wal",
   "file:duckdb-parquet/my-db.duckdb",
   "file:duckdb-parquet-partitioned/hits_encrypted.parquet/",
-  "file:duckdb-parquet/hits_encrypted.parquet",
+  "file:duckdb-parquet/hits.parquet",
   "file:duckdb-parquet-partitioned/my-db.duckdb",
   "file:duckdb-parquet-partitioned/my-db.duckdb.wal",
+  "file:duckdb-parquet-encrypted/my-db.duckdb",
+  "file:duckdb-parquet-encrypted/my-db.duckdb.wal",
+  "file:duckdb-parquet-encrypted/log.txt",
+  "file:duckdb-parquet-encrypted/queries.sql",
+  "file:duckdb-parquet-encrypted/hits_encrypted.parquet",
   "file:clickhouse/clickhouse",
   "file:clickhouse/status",
   "file:clickhouse/result.csv",
