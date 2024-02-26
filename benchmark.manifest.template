@@ -5,9 +5,9 @@ loader.entrypoint = "file:{{ gramine.libos }}"
 libos.entrypoint = "{{ entrypoint }}"
 
 #loader.log_level = "{{ log_level }}"
-#loader.log_level = "trace"
+loader.log_level = "trace"
 #loader.log_level = "debug"
-loader.log_level = "error"
+#loader.log_level = "error"
 
 # This is to enable calling the benchmark securely with different scripts
 loader.insecure__use_cmdline_argv = true
@@ -48,7 +48,7 @@ sgx.edmm_enable = {{ 'true' if env.get('EDMM', '0') == '1' else 'false' }}
 sgx.enclave_size = "64G"
 # Do not change the number of maximum threads
 sgx.max_threads = {{ '1' if env.get('EDMM', '0') == '1' else '256' }}
-# sgx.enable_stats = true
+sgx.enable_stats = true
 sgx.preheat_enclave = true
 sgx.profile.mode = "ocall_outer"
 sgx.profile.with_stack = 1

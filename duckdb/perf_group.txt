@@ -1,0 +1,27 @@
+----- Total SGX stats for process 35882 -----
+  # of EENTERs:        85681
+  # of EEXITs:         85318
+  # of AEXs:           16974239
+  # of sync signals:   105
+  # of async signals:  0
+
+ Performance counter stats for 'gramine-sgx ./benchmark duckdb/profile_duckdb.py':
+
+         966543.35 msec task-clock                #    4.831 CPUs utilized          
+             33959      context-switches          #   35.134 /sec                   
+               279      cpu-migrations            #    0.289 /sec                   
+          17711494      page-faults               #   18.325 K/sec                  
+     2121210768606      cycles                    #    2.195 GHz                    
+      505840738829      instructions              #    0.24  insn per cycle         
+      133000855538      branches                  #  137.605 M/sec                  
+         565328485      branch-misses             #    0.43% of all branches        
+    10606053843030      slots                     #   10.973 G/sec                  
+      761905521638      topdown-retiring          #      5.4% retiring              
+     4634111291378      topdown-bad-spec          #     32.8% bad speculation       
+      385492759869      topdown-fe-bound          #      2.7% frontend bound        
+     8355840545170      topdown-be-bound          #     59.1% backend bound         
+
+     200.064409381 seconds time elapsed
+
+     856.736678000 seconds user
+     109.845628000 seconds sys
