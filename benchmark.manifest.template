@@ -5,9 +5,9 @@ loader.entrypoint = "file:{{ gramine.libos }}"
 libos.entrypoint = "{{ entrypoint }}"
 
 #loader.log_level = "{{ log_level }}"
-loader.log_level = "trace"
+#loader.log_level = "trace"
 #loader.log_level = "debug"
-#loader.log_level = "error"
+loader.log_level = "error"
 
 # This is to enable calling the benchmark securely with different scripts
 loader.insecure__use_cmdline_argv = true
@@ -18,6 +18,8 @@ loader.env.PATH = "{{ execdir }}"
 
 # Set HOME to suppress "warning: cannot find home directory"
 loader.env.HOME = "/"
+
+#loader.env.MALLOC_ARENA_MAX = "1"
 
 fs.mounts = [
   { path = "/lib", uri = "file:{{ gramine.runtimedir() }}" },
@@ -45,13 +47,13 @@ fs.insecure__keys.default = "ffeeddccbbaa99887766554433221100"
 
 sgx.debug = true
 sgx.edmm_enable = {{ 'true' if env.get('EDMM', '0') == '1' else 'false' }}
-sgx.enclave_size = "64G"
+sgx.enclave_size = "32G"
 # Do not change the number of maximum threads
 sgx.max_threads = {{ '1' if env.get('EDMM', '0') == '1' else '256' }}
-sgx.enable_stats = true
+#sgx.enable_stats = true
 sgx.preheat_enclave = true
-sgx.profile.mode = "ocall_outer"
-sgx.profile.with_stack = 1
+#sgx.profile.mode = "ocall_inner"
+#sgx.profile.with_stack = 1
 
 sgx.trusted_files = [
   "file:{{ gramine.libos }}",
