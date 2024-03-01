@@ -47,7 +47,7 @@ fs.insecure__keys.default = "ffeeddccbbaa99887766554433221100"
 
 sgx.debug = true
 sgx.edmm_enable = {{ 'true' if env.get('EDMM', '0') == '1' else 'false' }}
-sgx.enclave_size = "32G"
+sgx.enclave_size = "64G"
 # Do not change the number of maximum threads
 sgx.max_threads = {{ '1' if env.get('EDMM', '0') == '1' else '256' }}
 #sgx.enable_stats = true
@@ -72,13 +72,12 @@ sgx.trusted_files = [
   "file:clickhouse-encrypted/benchmark_clickhouse.py",
   "file:duckdb/profile_duckdb.py",
   "file:/usr/bin/clickhouse-client",
-#{% for path in python.get_sys_path(entrypoint) %}
-#  "file:{{ path }}{{ '/' if path.is_dir() else '' }}",
-#{% endfor %}
   "file:/usr/local/lib/python3.10/dist-packages/",
+  "file:/usr/local/lib/python3.10/dist-packages/duckdb/",
   "file:/usr/lib/python3/dist-packages/",
   "file:/usr/lib/python3.10/",
-  "file:/usr/lib/python3/dist-packages/duckdb/",
+  "file:/home/sdp/.local/lib/python3.10/site-packages/",
+  #"file:/usr/lib/python3/dist-packages/duckdb/",
 ]
 
 sgx.allowed_files = [

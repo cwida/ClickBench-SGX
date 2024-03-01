@@ -12,6 +12,7 @@ def run_query(query, explain_file):
         con = duckdb.connect(database="duckdb/my-db.duckdb", read_only=False)
         con.execute("PRAGMA enable_profiling")
         con.execute("SET threads TO 1;")
+        #con.execute("SET threads TO 32;")
         con.execute("PRAGMA add_parquet_key('key128', '0123456789112345')")
         
         for try_num in range(3):
