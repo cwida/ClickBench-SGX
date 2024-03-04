@@ -54,6 +54,7 @@ sgx.max_threads = {{ '1' if env.get('EDMM', '0') == '1' else '256' }}
 sgx.preheat_enclave = true
 #sgx.profile.mode = "ocall_inner"
 #sgx.profile.with_stack = 1
+sgx.cpu_features.avx512 = "required"
 
 sgx.trusted_files = [
   "file:{{ gramine.libos }}",
