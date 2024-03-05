@@ -4,9 +4,12 @@ import os
 import duckdb
 import timeit
 import sys
+import time
 
 def run_query(query, log_file):
     with open(log_file, 'a') as log:
+        print("Sleeping 1 minute...")
+        time.sleep(60)
         print(f"\nRunning query: {query.strip()}")
         log.write(query + '\n')
 

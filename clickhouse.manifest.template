@@ -71,7 +71,7 @@ sgx.trusted_files = [
   "file:/usr/local/lib/python3.10/dist-packages/",
   "file:/usr/lib/python3/dist-packages/",
   "file:/usr/lib/python3.10/",
-  "file:/usr/lib/python3/dist-packages/duckdb/",
+  #"file:/usr/lib/python3/dist-packages/duckdb/",
   "file:{{ execdir }}/clickhouse/clickhouse",
 ]
 

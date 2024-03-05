@@ -649,7 +649,7 @@ FodyWeavers.xsd
 *.manifest.sgx
 *.sig
 *.token
-**/hits.csv
+**/hits*.csv
 **/hits.csv.gz
 **/my-db.duckdb.wal
 clickhouse/clickhouse
@@ -658,7 +658,7 @@ clickhouse-encrypted/clickhouse
 **/hits.tsv
 clickhouse/status
 clickhouse-encrypted/status
-**/hits.parquet
+**/hits*.parquet
 **/my-db.duckdb
 **/hits_encrypted.parquet
 duckdb-parquet-partitioned/hits_encrypted.parquet/*
