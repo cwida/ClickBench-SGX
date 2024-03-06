@@ -1,172 +1,172 @@
 SELECT COUNT(*) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'});
-1.8536381721496582
-1.1077988147735596
-1.217362880706787
+2.0118439197540283
+1.2356719970703125
+1.206397294998169
 SELECT COUNT(*) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE AdvEngineID <> 0;
-2.11529803276062
-0.744239091873169
-0.9174673557281494
+3.602266311645508
+0.8826112747192383
+1.0643537044525146
 SELECT SUM(AdvEngineID), COUNT(*), AVG(ResolutionWidth) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'});
-2.416177272796631
-0.8943300247192383
-0.9243931770324707
+4.843130826950073
+0.9608669281005859
+1.132544994354248
 SELECT AVG(UserID) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'});
-2.437859058380127
-0.9529342651367188
-0.9830760955810547
+4.7388129234313965
+1.1221401691436768
+1.0199151039123535
 SELECT COUNT(DISTINCT UserID) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'});
-3.1307010650634766
-1.0809779167175293
-1.3326148986816406
+7.404333829879761
+1.5346028804779053
+1.9841060638427734
 SELECT COUNT(DISTINCT SearchPhrase) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'});
-3.6014671325683594
-1.475938081741333
-1.5762569904327393
+10.59399700164795
+1.4034459590911865
+2.0604891777038574
 SELECT MIN(EventDate), MAX(EventDate) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'});
-2.032236099243164
-0.7881009578704834
-0.8592116832733154
+8.18855881690979
+1.545022964477539
+2.0837528705596924
 SELECT AdvEngineID, COUNT(*) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE AdvEngineID <> 0 GROUP BY AdvEngineID ORDER BY COUNT(*) DESC;
-2.1491150856018066
-0.8034930229187012
-0.9595799446105957
+7.800795793533325
+1.3793840408325195
+1.752091884613037
 SELECT RegionID, COUNT(DISTINCT UserID) AS u FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) GROUP BY RegionID ORDER BY u DESC LIMIT 10;
-3.753098964691162
-1.3445980548858643
-1.481226921081543
+10.001441717147827
+1.6890532970428467
+2.3695151805877686
 SELECT RegionID, SUM(AdvEngineID), COUNT(*) AS c, AVG(ResolutionWidth), COUNT(DISTINCT UserID) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) GROUP BY RegionID ORDER BY c DESC LIMIT 10;
-4.809172868728638
-1.5036633014678955
-1.6913058757781982
+11.668024063110352
+2.08429217338562
+2.333505153656006
 SELECT MobilePhoneModel, COUNT(DISTINCT UserID) AS u FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE MobilePhoneModel <> '' GROUP BY MobilePhoneModel ORDER BY u DESC LIMIT 10;
-3.1335031986236572
-0.9346640110015869
-1.0442619323730469
+9.960989952087402
+1.5750200748443604
+1.6148290634155273
 SELECT MobilePhone, MobilePhoneModel, COUNT(DISTINCT UserID) AS u FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE MobilePhoneModel <> '' GROUP BY MobilePhone, MobilePhoneModel ORDER BY u DESC LIMIT 10;
-3.4781908988952637
-0.9830410480499268
-1.0570051670074463
+9.494212865829468
+1.4818370342254639
+1.4953820705413818
 SELECT SearchPhrase, COUNT(*) AS c FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE SearchPhrase <> '' GROUP BY SearchPhrase ORDER BY c DESC LIMIT 10;
-4.1043031215667725
-1.6861510276794434
-1.634054183959961
+11.51213812828064
+1.3722550868988037
+2.0613670349121094
 SELECT SearchPhrase, COUNT(DISTINCT UserID) AS u FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE SearchPhrase <> '' GROUP BY SearchPhrase ORDER BY u DESC LIMIT 10;
-5.362907886505127
-2.0322659015655518
-2.529202938079834
+14.098931789398193
+4.3148651123046875
+5.238573789596558
 SELECT SearchEngineID, SearchPhrase, COUNT(*) AS c FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE SearchPhrase <> '' GROUP BY SearchEngineID, SearchPhrase ORDER BY c DESC LIMIT 10;
-3.9288582801818848
-1.743779182434082
-1.7105321884155273
+11.282979249954224
+1.6013619899749756
+2.0487618446350098
 SELECT UserID, COUNT(*) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) GROUP BY UserID ORDER BY COUNT(*) DESC LIMIT 10;
-3.7374069690704346
-1.0813710689544678
-1.8569738864898682
+12.02553915977478
+1.5690369606018066
+2.6339330673217773
 SELECT UserID, SearchPhrase, COUNT(*) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) GROUP BY UserID, SearchPhrase ORDER BY COUNT(*) DESC LIMIT 10;
-6.552299976348877
-2.9011809825897217
-3.9819650650024414
+16.54495620727539
+4.829081773757935
+6.135256052017212
 SELECT UserID, SearchPhrase, COUNT(*) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) GROUP BY UserID, SearchPhrase LIMIT 10;
-6.889107942581177
-2.8389780521392822
-3.2131636142730713
+19.17871403694153
+4.074602127075195
+6.744065046310425
 SELECT UserID, extract(minute FROM EventTime) AS m, SearchPhrase, COUNT(*) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) GROUP BY UserID, m, SearchPhrase ORDER BY COUNT(*) DESC LIMIT 10;
-11.341401100158691
-5.698138952255249
-7.311012029647827
+24.654324054718018
+9.442018032073975
+11.203166961669922
 SELECT UserID FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE UserID = 435090932899640449;
-2.1980111598968506
-0.8559300899505615
-0.859062910079956
+12.925548076629639
+2.85805082321167
+2.8948142528533936
 SELECT COUNT(*) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE URL LIKE '%google%';
-6.339349985122681
-1.736163854598999
-1.6936776638031006
+17.123403072357178
+3.1850192546844482
+3.6135013103485107
 SELECT SearchPhrase, MIN(URL), COUNT(*) AS c FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE URL LIKE '%google%' AND SearchPhrase <> '' GROUP BY SearchPhrase ORDER BY c DESC LIMIT 10;
-7.523310899734497
-1.8955960273742676
-1.8539581298828125
+16.531893968582153
+3.8980369567871094
+3.0378410816192627
 SELECT SearchPhrase, MIN(URL), MIN(Title), COUNT(*) AS c, COUNT(DISTINCT UserID) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE Title LIKE '%Google%' AND URL NOT LIKE '%.google.%' AND SearchPhrase <> '' GROUP BY SearchPhrase ORDER BY c DESC LIMIT 10;
-11.982661724090576
-2.7483839988708496
-2.7043657302856445
+15.541858673095703
+5.1114983558654785
+4.872935771942139
 SELECT * FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE URL LIKE '%google%' ORDER BY EventTime LIMIT 10;
-78.83843207359314
-142.4111328125
-137.9768660068512
+122.01703310012817
+165.80962300300598
+177.72687411308289
 SELECT SearchPhrase FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE SearchPhrase <> '' ORDER BY EventTime LIMIT 10;
-4.282871961593628
-1.2191321849822998
-1.0591309070587158
+47.466736793518066
+16.455124378204346
+16.37286615371704
 SELECT SearchPhrase FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE SearchPhrase <> '' ORDER BY SearchPhrase LIMIT 10;
-2.6610519886016846
-1.0159640312194824
-1.0687642097473145
+49.700319051742554
+15.65308403968811
+14.68126392364502
 SELECT SearchPhrase FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE SearchPhrase <> '' ORDER BY EventTime, SearchPhrase LIMIT 10;
-4.556447982788086
-1.150310754776001
-1.2656269073486328
+42.39088487625122
+17.247480154037476
+17.917980194091797
 SELECT CounterID, AVG(STRLEN(URL)) AS l, COUNT(*) AS c FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE URL <> '' GROUP BY CounterID HAVING COUNT(*) > 100000 ORDER BY l DESC LIMIT 25;
-6.659045219421387
-1.7617197036743164
-1.743314266204834
+47.177210092544556
+18.403527975082397
+16.979103088378906
 SELECT REGEXP_REPLACE(Referer, '^https?://(?:www\.)?([^/]+)/.*$', '\1') AS k, AVG(STRLEN(Referer)) AS l, COUNT(*) AS c, MIN(Referer) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE Referer <> '' GROUP BY k HAVING COUNT(*) > 100000 ORDER BY l DESC LIMIT 25;
-8.03541874885559
-7.1629931926727295
-6.930974960327148
+70.38905811309814
+19.835835933685303
+21.868154048919678
 SELECT SUM(ResolutionWidth), SUM(ResolutionWidth + 1), SUM(ResolutionWidth + 2), SUM(ResolutionWidth + 3), SUM(ResolutionWidth + 4), SUM(ResolutionWidth + 5), SUM(ResolutionWidth + 6), SUM(ResolutionWidth + 7), SUM(ResolutionWidth + 8), SUM(ResolutionWidth + 9), SUM(ResolutionWidth + 10), SUM(ResolutionWidth + 11), SUM(ResolutionWidth + 12), SUM(ResolutionWidth + 13), SUM(ResolutionWidth + 14), SUM(ResolutionWidth + 15), SUM(ResolutionWidth + 16), SUM(ResolutionWidth + 17), SUM(ResolutionWidth + 18), SUM(ResolutionWidth + 19), SUM(ResolutionWidth + 20), SUM(ResolutionWidth + 21), SUM(ResolutionWidth + 22), SUM(ResolutionWidth + 23), SUM(ResolutionWidth + 24), SUM(ResolutionWidth + 25), SUM(ResolutionWidth + 26), SUM(ResolutionWidth + 27), SUM(ResolutionWidth + 28), SUM(ResolutionWidth + 29), SUM(ResolutionWidth + 30), SUM(ResolutionWidth + 31), SUM(ResolutionWidth + 32), SUM(ResolutionWidth + 33), SUM(ResolutionWidth + 34), SUM(ResolutionWidth + 35), SUM(ResolutionWidth + 36), SUM(ResolutionWidth + 37), SUM(ResolutionWidth + 38), SUM(ResolutionWidth + 39), SUM(ResolutionWidth + 40), SUM(ResolutionWidth + 41), SUM(ResolutionWidth + 42), SUM(ResolutionWidth + 43), SUM(ResolutionWidth + 44), SUM(ResolutionWidth + 45), SUM(ResolutionWidth + 46), SUM(ResolutionWidth + 47), SUM(ResolutionWidth + 48), SUM(ResolutionWidth + 49), SUM(ResolutionWidth + 50), SUM(ResolutionWidth + 51), SUM(ResolutionWidth + 52), SUM(ResolutionWidth + 53), SUM(ResolutionWidth + 54), SUM(ResolutionWidth + 55), SUM(ResolutionWidth + 56), SUM(ResolutionWidth + 57), SUM(ResolutionWidth + 58), SUM(ResolutionWidth + 59), SUM(ResolutionWidth + 60), SUM(ResolutionWidth + 61), SUM(ResolutionWidth + 62), SUM(ResolutionWidth + 63), SUM(ResolutionWidth + 64), SUM(ResolutionWidth + 65), SUM(ResolutionWidth + 66), SUM(ResolutionWidth + 67), SUM(ResolutionWidth + 68), SUM(ResolutionWidth + 69), SUM(ResolutionWidth + 70), SUM(ResolutionWidth + 71), SUM(ResolutionWidth + 72), SUM(ResolutionWidth + 73), SUM(ResolutionWidth + 74), SUM(ResolutionWidth + 75), SUM(ResolutionWidth + 76), SUM(ResolutionWidth + 77), SUM(ResolutionWidth + 78), SUM(ResolutionWidth + 79), SUM(ResolutionWidth + 80), SUM(ResolutionWidth + 81), SUM(ResolutionWidth + 82), SUM(ResolutionWidth + 83), SUM(ResolutionWidth + 84), SUM(ResolutionWidth + 85), SUM(ResolutionWidth + 86), SUM(ResolutionWidth + 87), SUM(ResolutionWidth + 88), SUM(ResolutionWidth + 89) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'});
-10.922022819519043
-2.6153063774108887
-3.622481107711792
+133.27018189430237
+24.735069274902344
+36.03208613395691
 SELECT SearchEngineID, ClientIP, COUNT(*) AS c, SUM(IsRefresh), AVG(ResolutionWidth) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE SearchPhrase <> '' GROUP BY SearchEngineID, ClientIP ORDER BY c DESC LIMIT 10;
-4.698125839233398
-1.189838171005249
-1.398650884628296
+84.71280598640442
+18.353429079055786
+16.281511306762695
 SELECT WatchID, ClientIP, COUNT(*) AS c, SUM(IsRefresh), AVG(ResolutionWidth) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE SearchPhrase <> '' GROUP BY WatchID, ClientIP ORDER BY c DESC LIMIT 10;
-6.453722715377808
-1.8125410079956055
-1.9263179302215576
+88.90350103378296
+35.468071937561035
+32.78127312660217
 SELECT WatchID, ClientIP, COUNT(*) AS c, SUM(IsRefresh), AVG(ResolutionWidth) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) GROUP BY WatchID, ClientIP ORDER BY c DESC LIMIT 10;
-28.128862142562866
-41.63196396827698
-40.09198212623596
+209.8463430404663
+163.0644280910492
+141.2543020248413
 SELECT URL, COUNT(*) AS c FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) GROUP BY URL ORDER BY c DESC LIMIT 10;
-13.1491219997406
-13.409183025360107
-13.74033784866333
+191.48302698135376
+126.46503710746765
+110.2639229297638
 SELECT 1, URL, COUNT(*) AS c FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) GROUP BY 1, URL ORDER BY c DESC LIMIT 10;
-12.676547050476074
-13.181178092956543
-14.227247953414917
+180.74379205703735
+96.58997011184692
+110.55403208732605
 SELECT ClientIP, ClientIP - 1, ClientIP - 2, ClientIP - 3, COUNT(*) AS c FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) GROUP BY ClientIP, ClientIP - 1, ClientIP - 2, ClientIP - 3 ORDER BY c DESC LIMIT 10;
-3.765204906463623
-0.9944038391113281
-2.1767501831054688
+103.47548985481262
+33.74859118461609
+31.258458852767944
 SELECT URL, COUNT(*) AS PageViews FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE CounterID = 62 AND EventDate >= '2013-07-01' AND EventDate <= '2013-07-31' AND DontCountHits = 0 AND IsRefresh = 0 AND URL <> '' GROUP BY URL ORDER BY PageViews DESC LIMIT 10;
-2.2012319564819336
-1.0550270080566406
-1.124657154083252
+74.58693814277649
+29.95240306854248
+26.374731063842773
 SELECT Title, COUNT(*) AS PageViews FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE CounterID = 62 AND EventDate >= '2013-07-01' AND EventDate <= '2013-07-31' AND DontCountHits= 0 AND IsRefresh = 0 AND Title <> '' GROUP BY Title ORDER BY PageViews DESC LIMIT 10;
-2.2563929557800293
-0.8679969310760498
-1.2229390144348145
+75.04387903213501
+25.10353994369507
+35.27960658073425
 SELECT URL, COUNT(*) AS PageViews FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE CounterID = 62 AND EventDate >= '2013-07-01' AND EventDate <= '2013-07-31' AND IsRefresh = 0 AND IsLink <> 0 AND IsDownload = 0 GROUP BY URL ORDER BY PageViews DESC LIMIT 10 OFFSET 1000;
-1.7077288627624512
-0.8823487758636475
-1.0774941444396973
+74.60000872612
+26.982396125793457
+26.925471782684326
 SELECT TraficSourceID, SearchEngineID, AdvEngineID, CASE WHEN (SearchEngineID = 0 AND AdvEngineID = 0) THEN Referer ELSE '' END AS Src, URL AS Dst, COUNT(*) AS PageViews FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE CounterID = 62 AND EventDate >= '2013-07-01' AND EventDate <= '2013-07-31' AND IsRefresh = 0 GROUP BY TraficSourceID, SearchEngineID, AdvEngineID, Src, Dst ORDER BY PageViews DESC LIMIT 10 OFFSET 1000;
-2.785337209701538
-1.2882423400878906
-1.4375309944152832
+80.18409895896912
+27.29947805404663
+33.13040208816528
 SELECT URLHash, EventDate, COUNT(*) AS PageViews FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE CounterID = 62 AND EventDate >= '2013-07-01' AND EventDate <= '2013-07-31' AND IsRefresh = 0 AND TraficSourceID IN (-1, 6) AND RefererHash = 3594120000172545465 GROUP BY URLHash, EventDate ORDER BY PageViews DESC LIMIT 10 OFFSET 100;
-2.344092845916748
-0.8702380657196045
-0.9217667579650879
+71.60256600379944
+21.2159481048584
+26.915676832199097
 SELECT WindowClientWidth, WindowClientHeight, COUNT(*) AS PageViews FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE CounterID = 62 AND EventDate >= '2013-07-01' AND EventDate <= '2013-07-31' AND IsRefresh = 0 AND DontCountHits = 0 AND URLHash = 2868770270353813622 GROUP BY WindowClientWidth, WindowClientHeight ORDER BY PageViews DESC LIMIT 10 OFFSET 10000;
-2.074735164642334
-0.8404791355133057
-1.0103368759155273
+70.44437408447266
+28.40661096572876
+25.171491146087646
 SELECT DATE_TRUNC('minute', EventTime) AS M, COUNT(*) AS PageViews FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE CounterID = 62 AND EventDate >= '2013-07-14' AND EventDate <= '2013-07-15' AND IsRefresh = 0 AND DontCountHits = 0 GROUP BY DATE_TRUNC('minute', EventTime) ORDER BY DATE_TRUNC('minute', EventTime) LIMIT 10 OFFSET 1000;
-2.290026903152466
-0.8960678577423096
-1.0341238975524902
+71.95101475715637
+22.307168006896973
+27.19511890411377
