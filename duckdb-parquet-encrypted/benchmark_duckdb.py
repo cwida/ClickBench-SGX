@@ -12,6 +12,7 @@ def run_query(query, log_file):
 
         con = duckdb.connect(database=os.path.join(os.getcwd(), "duckdb-parquet-encrypted/my-db.duckdb"), read_only=False)
         con.execute("PRAGMA add_parquet_key('key128', '0123456789112345')");
+        con.execute("SET memory_limit = '64GB';")
         for try_num in range(3):
             start = timeit.default_timer()
             results = con.sql(query).fetchall()
