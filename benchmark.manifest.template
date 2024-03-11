@@ -50,6 +50,7 @@ sgx.edmm_enable = {{ 'true' if env.get('EDMM', '0') == '1' else 'false' }}
 sgx.enclave_size = "32G"
 # Do not change the number of maximum threads
 sgx.max_threads = {{ '1' if env.get('EDMM', '0') == '1' else '256' }}
+#sgx.insecure__rpc_thread_num = 16
 #sgx.enable_stats = true
 sgx.preheat_enclave = true
 #sgx.profile.mode = "ocall_inner"
@@ -91,18 +92,16 @@ sgx.allowed_files = [
   "file:/tmp/testfile",
   "file:duckdb-parquet/log.txt",
   "file:duckdb-parquet/queries.sql",
-  "file:duckdb-parquet-partitioned/log.txt",
-  "file:duckdb-parquet-partitioned/queries.sql",
   "file:duckdb/my-db.duckdb.wal",
   "file:duckdb/explain.txt",
   "file:duckdb/explain_query.sql",
   "file:duckdb-parquet/my-db.duckdb",
-  "file:duckdb-parquet-partitioned/hits_encrypted.parquet/",
   "file:duckdb-parquet/hits.parquet",
   "file:duckdb-parquet-encrypted/my-db.duckdb",
   "file:duckdb-parquet-encrypted/my-db.duckdb.wal",
   "file:duckdb-parquet-encrypted/log.txt",
   "file:duckdb-parquet-encrypted/queries.sql",
+  "file:duckdb-parquet-encrypted/hits.parquet",
   "file:duckdb-parquet-encrypted/hits_encrypted.parquet",
   "file:duckdb-parquet-encrypted/hits_encrypted_sample.parquet",
   "file:duckdb-parquet-encrypted/hits_encrypted_sample_20.parquet",
