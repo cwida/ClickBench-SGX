@@ -16,7 +16,7 @@ def run_query(query, log_file, query_path):
     
     subprocess.run("sudo sync; sudo sh -c 'echo 3 >/proc/sys/vm/drop_caches'", shell=True, check=True)
     print("\nStarting enclave...")
-    subprocess.run("gramine-sgx benchmark duckdb/enclave_query.py", shell=True, check=True)
+    subprocess.run("numactl --cpunodebind=0 --membind=0 gramine-sgx benchmark duckdb/enclave_query.py", shell=True, check=True)
     print("Enclave terminated...")
 
 def main():
