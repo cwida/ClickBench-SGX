@@ -11,6 +11,7 @@ def run_query(query, explain_file):
 
         con = duckdb.connect(database="duckdb/my-db.duckdb", read_only=False)
         con.execute("PRAGMA enable_profiling")
+        con.execute("SET memory_limit = '64GB';")
         #con.execute("SET threads TO 1;")
         #con.execute("SET threads TO 16;")
         #con.execute("SET threads TO 32;")
