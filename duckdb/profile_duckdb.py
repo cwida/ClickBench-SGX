@@ -14,10 +14,10 @@ def run_query(query, explain_file):
         con.execute("SET memory_limit = '64GB';")
         #con.execute("SET threads TO 1;")
         #con.execute("SET threads TO 16;")
-        #con.execute("SET threads TO 32;")
+        con.execute("SET threads TO 32;")
         con.execute("PRAGMA add_parquet_key('key128', '0123456789112345')")
         
-        for try_num in range(3):
+        for try_num in range(1):
             start = timeit.default_timer()
             con.sql(query).explain("analyze")
             end = timeit.default_timer()
