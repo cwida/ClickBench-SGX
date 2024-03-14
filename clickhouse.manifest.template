@@ -35,9 +35,9 @@ fs.mounts = [
   { path = "/usr/share/zoneinfo", uri = "file:/usr/share/zoneinfo" },
   { path = "/usr/{{ arch_libdir }}", uri = "file:/usr/{{ arch_libdir }}" },
   { path = "/tmp", uri = "file:/tmp" },
-  { path = "/usr/local/lib/python3.10/dist-packages", uri = "file:/usr/local/lib/python3.10/dist-packages" },
+  { path = "/usr/local/lib/python3.11/dist-packages", uri = "file:/usr/local/lib/python3.11/dist-packages" },
   { path = "/usr/lib/python3/dist-packages", uri = "file:/usr/lib/python3/dist-packages" },
-  { path = "/usr/lib/python3.10", uri = "file:/usr/lib/python3.10" },
+  { path = "/usr/lib/python3.11", uri = "file:/usr/lib/python3.11" },
   { path = "{{ execdir }}", uri = "file:{{ execdir }}" },
 ]
 
@@ -60,19 +60,19 @@ sgx.trusted_files = [
   "file:{{ gramine.libos }}",
   "file:{{ gramine.runtimedir() }}/",
   "file:{{ arch_libdir }}/",
-  "file:/usr/bin/clickhouse-server",
-  "file:/usr/bin/clickhouse",
+  #"file:/usr/bin/clickhouse-server",
+  #"file:/usr/bin/clickhouse",
   "file:/bin/",
   "file:/usr/bin/",
   "file:/usr/{{ arch_libdir }}/",
   "file:/usr/lib/",
   "file:clickhouse-encrypted/benchmark_clickhouse.py",
-  "file:/usr/bin/clickhouse-client",
-  "file:/usr/local/lib/python3.10/dist-packages/",
+  #"file:/usr/bin/clickhouse-client",
+  "file:/usr/local/lib/python3.11/dist-packages/",
   "file:/usr/lib/python3/dist-packages/",
-  "file:/usr/lib/python3.10/",
+  "file:/usr/lib/python3.11/",
   #"file:/usr/lib/python3/dist-packages/duckdb/",
-  "file:{{ execdir }}/clickhouse/clickhouse",
+  #"file:{{ execdir }}/clickhouse/clickhouse",
 ]
 
 sgx.allowed_files = [
@@ -111,5 +111,5 @@ sgx.allowed_files = [
   "file:/data/clickhouse-encrypted/",
   "file:/usr/share/dpkg/cputable",
   "file:/usr/lib/python3/dist-packages/__pycache__/",
-  "file:/usr/lib/python3.10/__pycache__/",
+  "file:/usr/lib/python3.11/__pycache__/",
 ]

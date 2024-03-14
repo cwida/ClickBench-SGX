@@ -31,9 +31,9 @@ fs.mounts = [
   { path = "/usr/share/zoneinfo", uri = "file:/usr/share/zoneinfo" },
   { path = "/usr/{{ arch_libdir }}", uri = "file:/usr/{{ arch_libdir }}" },
   { path = "/tmp", uri = "file:/tmp" },
-  { path = "/usr/local/lib/python3.10/dist-packages", uri = "file:/usr/local/lib/python3.10/dist-packages" },
+  { path = "/usr/local/lib/python3.11/dist-packages", uri = "file:/usr/local/lib/python3.11/dist-packages" },
   { path = "/usr/lib/python3/dist-packages", uri = "file:/usr/lib/python3/dist-packages" },
-  { path = "/usr/lib/python3.10", uri = "file:/usr/lib/python3.10" },
+  { path = "/usr/lib/python3.11", uri = "file:/usr/lib/python3.11" },
 {% for path in python.get_sys_path(entrypoint) %}
   { path = "{{ path }}", uri = "file:{{ path }}" },
 {% endfor %}
@@ -49,7 +49,7 @@ sgx.debug = true
 sgx.edmm_enable = {{ 'true' if env.get('EDMM', '0') == '1' else 'false' }}
 sgx.enclave_size = "64G"
 # Do not change the number of maximum threads
-sgx.max_threads = {{ '1' if env.get('EDMM', '0') == '1' else '256' }}
+sgx.max_threads = {{ '1' if env.get('EDMM', '0') == '1' else '963' }}
 #sgx.insecure__rpc_thread_num = 16
 #sgx.enable_stats = true
 sgx.preheat_enclave = true
@@ -74,12 +74,12 @@ sgx.trusted_files = [
   "file:clickhouse/benchmark_clickhouse.py",
   "file:clickhouse-encrypted/benchmark_clickhouse.py",
   "file:duckdb/profile_duckdb.py",
-  "file:/usr/bin/clickhouse-client",
-  "file:/usr/local/lib/python3.10/dist-packages/",
-  "file:/usr/local/lib/python3.10/dist-packages/duckdb/",
+  #"file:/usr/bin/clickhouse-client",
+  "file:/usr/local/lib/python3.11/dist-packages/",
+  "file:/usr/local/lib/python3.11/dist-packages/duckdb/",
   "file:/usr/lib/python3/dist-packages/",
-  "file:/usr/lib/python3.10/",
-  "file:/home/sdp/.local/lib/python3.10/site-packages/",
+  "file:/usr/lib/python3.11/",
+  #"file:/home/sdp/.local/lib/python3.11/site-packages/",
   #"file:/usr/lib/python3/dist-packages/duckdb/",
 ]
 
@@ -118,5 +118,5 @@ sgx.allowed_files = [
   "file:/data/clickhouse-encrypted/",
   "file:/usr/share/dpkg/cputable",
   "file:/usr/lib/python3/dist-packages/__pycache__/",
-  "file:/usr/lib/python3.10/__pycache__/",
+  "file:/usr/lib/python3.11/__pycache__/",
 ]
