@@ -10,7 +10,7 @@ def run_query(query, log_file):
         print(f"\nRunning query: {query.strip()}")
         log.write(query + '\n')
 
-        con = duckdb.connect(database=os.path.join(os.getcwd(), "duckdb-parquet/my-db.duckdb"), read_only=False)
+        con = duckdb.connect(database=os.path.join(os.getcwd(), "duckdb-parquet/my-db.duckdb"))
         con.execute("PRAGMA add_parquet_key('key128', '0123456789112345')");
         for try_num in range(3):
             start = timeit.default_timer()

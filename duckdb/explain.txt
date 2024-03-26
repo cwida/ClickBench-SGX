@@ -1,54 +1,58 @@
-select k, count(k) from (select range & ((1 << 2) - 1)  as k, range from range(1 << 28)) x  group by k;
-7.478925943374634
-select k, count(k) from (select range & ((1 << 3) - 1)  as k, range from range(1 << 28)) x  group by k;
-7.485380172729492
-select k, count(k) from (select range & ((1 << 4) - 1)  as k, range from range(1 << 28)) x  group by k;
-7.481856822967529
-select k, count(k) from (select range & ((1 << 5) - 1)  as k, range from range(1 << 28)) x  group by k;
-7.467088937759399
-select k, count(k) from (select range & ((1 << 6) - 1)  as k, range from range(1 << 28)) x  group by k;
-7.470638990402222
-select k, count(k) from (select range & ((1 << 7) - 1)  as k, range from range(1 << 28)) x  group by k;
-7.4782280921936035
-select k, count(k) from (select range & ((1 << 8) - 1)  as k, range from range(1 << 28)) x  group by k;
-7.504079103469849
-select k, count(k) from (select range & ((1 << 9) - 1)  as k, range from range(1 << 28)) x  group by k;
-7.510533094406128
-select k, count(k) from (select range & ((1 << 10) - 1)  as k, range from range(1 << 28)) x  group by k;
-7.547578811645508
-select k, count(k) from (select range & ((1 << 11) - 1)  as k, range from range(1 << 28)) x  group by k;
-7.594444990158081
-select k, count(k) from (select range & ((1 << 12) - 1)  as k, range from range(1 << 28)) x  group by k;
-7.645862340927124
-select k, count(k) from (select range & ((1 << 13) - 1)  as k, range from range(1 << 28)) x  group by k;
-7.646366357803345
-select k, count(k) from (select range & ((1 << 14) - 1)  as k, range from range(1 << 28)) x  group by k;
-7.8185107707977295
-select k, count(k) from (select range & ((1 << 15) - 1)  as k, range from range(1 << 28)) x  group by k;
-8.298399686813354
-select k, count(k) from (select range & ((1 << 16) - 1)  as k, range from range(1 << 28)) x  group by k;
-9.846813917160034
-select k, count(k) from (select range & ((1 << 17) - 1)  as k, range from range(1 << 28)) x  group by k;
-10.039793252944946
-select k, count(k) from (select range & ((1 << 18) - 1)  as k, range from range(1 << 28)) x  group by k;
-10.18106198310852
-select k, count(k) from (select range & ((1 << 19) - 1)  as k, range from range(1 << 28)) x  group by k;
-10.630606889724731
-select k, count(k) from (select range & ((1 << 20) - 1)  as k, range from range(1 << 28)) x  group by k;
-12.414072036743164
-select k, count(k) from (select range & ((1 << 21) - 1)  as k, range from range(1 << 28)) x  group by k;
-15.442126750946045
-select k, count(k) from (select range & ((1 << 22) - 1)  as k, range from range(1 << 28)) x  group by k;
-18.90233016014099
-select k, count(k) from (select range & ((1 << 23) - 1)  as k, range from range(1 << 28)) x  group by k;
-22.097965955734253
-select k, count(k) from (select range & ((1 << 24) - 1)  as k, range from range(1 << 28)) x  group by k;
-25.042176961898804
-select k, count(k) from (select range & ((1 << 25) - 1)  as k, range from range(1 << 28)) x  group by k;
-29.622063875198364
-select k, count(k) from (select range & ((1 << 26) - 1)  as k, range from range(1 << 28)) x  group by k;
-36.130894899368286
-select k, count(k) from (select range & ((1 << 27) - 1)  as k, range from range(1 << 28)) x  group by k;
-51.965327978134155
-select k, count(k) from (select range & ((1 << 28) - 1)  as k, range from range(1 << 28)) x  group by k;
-100.34919595718384
+select k, count(k) from (select range & ((1 << 2) - 1)  as k, range from range(1 << 30)) x  group by k;
+15.87069296836853
+select k, count(k) from (select range & ((1 << 3) - 1)  as k, range from range(1 << 30)) x  group by k;
+30.24750018119812
+select k, count(k) from (select range & ((1 << 4) - 1)  as k, range from range(1 << 30)) x  group by k;
+27.080531120300293
+select k, count(k) from (select range & ((1 << 5) - 1)  as k, range from range(1 << 30)) x  group by k;
+15.890321969985962
+select k, count(k) from (select range & ((1 << 6) - 1)  as k, range from range(1 << 30)) x  group by k;
+15.87592101097107
+select k, count(k) from (select range & ((1 << 7) - 1)  as k, range from range(1 << 30)) x  group by k;
+30.389904022216797
+select k, count(k) from (select range & ((1 << 8) - 1)  as k, range from range(1 << 30)) x  group by k;
+30.361411094665527
+select k, count(k) from (select range & ((1 << 9) - 1)  as k, range from range(1 << 30)) x  group by k;
+30.502089023590088
+select k, count(k) from (select range & ((1 << 10) - 1)  as k, range from range(1 << 30)) x  group by k;
+30.5378839969635
+select k, count(k) from (select range & ((1 << 11) - 1)  as k, range from range(1 << 30)) x  group by k;
+30.50141477584839
+select k, count(k) from (select range & ((1 << 12) - 1)  as k, range from range(1 << 30)) x  group by k;
+30.61758518218994
+select k, count(k) from (select range & ((1 << 13) - 1)  as k, range from range(1 << 30)) x  group by k;
+30.76474690437317
+select k, count(k) from (select range & ((1 << 14) - 1)  as k, range from range(1 << 30)) x  group by k;
+31.527706146240234
+select k, count(k) from (select range & ((1 << 15) - 1)  as k, range from range(1 << 30)) x  group by k;
+35.62842535972595
+select k, count(k) from (select range & ((1 << 16) - 1)  as k, range from range(1 << 30)) x  group by k;
+42.059746980667114
+select k, count(k) from (select range & ((1 << 17) - 1)  as k, range from range(1 << 30)) x  group by k;
+35.54763388633728
+select k, count(k) from (select range & ((1 << 18) - 1)  as k, range from range(1 << 30)) x  group by k;
+48.825403928756714
+select k, count(k) from (select range & ((1 << 19) - 1)  as k, range from range(1 << 30)) x  group by k;
+51.66815114021301
+select k, count(k) from (select range & ((1 << 20) - 1)  as k, range from range(1 << 30)) x  group by k;
+55.123069763183594
+select k, count(k) from (select range & ((1 << 21) - 1)  as k, range from range(1 << 30)) x  group by k;
+55.929677963256836
+select k, count(k) from (select range & ((1 << 22) - 1)  as k, range from range(1 << 30)) x  group by k;
+56.91556477546692
+select k, count(k) from (select range & ((1 << 23) - 1)  as k, range from range(1 << 30)) x  group by k;
+73.86039185523987
+select k, count(k) from (select range & ((1 << 24) - 1)  as k, range from range(1 << 30)) x  group by k;
+85.09262418746948
+select k, count(k) from (select range & ((1 << 25) - 1)  as k, range from range(1 << 30)) x  group by k;
+85.20415735244751
+select k, count(k) from (select range & ((1 << 26) - 1)  as k, range from range(1 << 30)) x  group by k;
+114.63127088546753
+select k, count(k) from (select range & ((1 << 27) - 1)  as k, range from range(1 << 30)) x  group by k;
+135.60088682174683
+select k, count(k) from (select range & ((1 << 28) - 1)  as k, range from range(1 << 30)) x  group by k;
+172.65099000930786
+select k, count(k) from (select range & ((1 << 29) - 1)  as k, range from range(1 << 30)) x  group by k;
+287.7774238586426
+select k, count(k) from (select range & ((1 << 30) - 1)  as k, range from range(1 << 30)) x  group by k;
+685.2369091510773
