@@ -1,5 +1,5 @@
 SELECT COUNT(*) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'});
-3.377424955368042
-1.6564922332763672
-2.2348320484161377
+2.4649338722229004
+1.2074179649353027
+1.2861592769622803
 SELECT COUNT(*) FROM read_parquet('duckdb-parquet-encrypted/hits_encrypted.parquet', encryption_config={footer_key: 'key128'}) WHERE AdvEngineID <> 0;
